@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style type="text/css">
+
+		.boxs {
+			height: 100px;
+			width: 100px;
+			background-color: green;
+			border: solid;
+			position: absolute;
+		}
+		.firsBox {
+			background-color: white;
+			background-image: url(duckl.png);
+		}
+
+	</style>
+</head>
+<body>
+	<div class="content">
+		<h4 style="margin-left: 20px">Score: <span class="score">150</span></h4>
+		<img src="dice.png" class="bt" style="width: 100px; margin-left: 20px">		
+		<div class="boxs firsBox" style="margin-left: 20px">
+			<h4>finish</h4>
+		</div>
+		<div class="boxs" style="margin-left: 130px">1</div>
+		<div class="boxs" style="margin-left: 240px">2</div>
+		<div class="boxs" style="margin-left: 350px; background-color: red">3</div>
+				
+		<div class="boxs" style="margin-left: 460px">4</div> 
+		<div class="boxs" style="margin-left: 570px">5</div>
+		<div class="boxs" style="margin-left: 680px;  background-color: red">6</div>
+		<div class="boxs" style="margin-left: 790px">7</div>
+
+		<div class="boxs" style="margin-left: 900px">8</div>
+		<div class="boxs" style="margin-left: 1010px;background-color: red" >9</div>
+		<div class="boxs" style="margin-left: 1120px">10</div>
+		<div class="boxs" style="margin-left: 1230px">11</div>
+
+		<div class="boxs" style="margin-left: 1340px;background-color: red">12 
+			<p>иди назад на -5 клеток</p>
+		</div>
+		<div class="boxs" style="margin-left: 1340px; margin-top: 110px">13</div>
+		<div class="boxs" style="margin-left: 1340px; margin-top: 220px">14</div>	
+		<div class="boxs" style="margin-left: 1340px; margin-top: 330px">15</div>		
+
+		<div class="boxs" style="margin-left: 1340px; margin-top: 440px; background-color: red">16
+			<p>иди назад на -5 клеток</p>
+		</div>
+		<div class="boxs" style="margin-left: 1230px; margin-top: 440px">17</div>
+		<div class="boxs" style="margin-left: 1120px; margin-top: 440px">18</div>
+		<div class="boxs" style="margin-left: 1010px; margin-top: 440px; background-color: red">19</div>
+
+		<div class="boxs" style="margin-left: 900px; margin-top: 440px">20</div>
+		<div class="boxs" style="margin-left: 790px; margin-top: 440px">21</div>
+		<div class="boxs" style="margin-left: 680px; margin-top: 440px; background-color: red">22</div>
+		<div class="boxs" style="margin-left: 570px; margin-top: 440px">23</div>
+
+		<div class="boxs" style="margin-left: 460px; margin-top: 440px">24</div>
+		<div class="boxs" style="margin-left: 350px; margin-top: 440px; background-color: red">25</div>
+		<div class="boxs" style="margin-left: 240px; margin-top: 440px">26</div>
+		<div class="boxs" style="margin-left: 130px; margin-top: 440px">27</div>
+
+		<div class="boxs" style="margin-left: 20px; margin-top: 440px; background-color: red">28
+			<p>иди назад на -5 клеток</p>
+		</div>
+		<div class="boxs" style="margin-left: 20px; margin-top: 330px">29</div>
+		<div class="boxs" style="margin-left: 20px; margin-top: 220px">30</div>	
+		<div class="boxs" style="margin-left: 20px; margin-top: 110px">31</div>		
+
+		<!--последние дивы-->
+		<div class="boxs" style="margin-left: 130px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 240px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 350px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 460px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 570px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 680px; margin-top: 110px; background-color: green; opacity: 0"></div>
+
+	</div>	
+<script type="text/javascript">
+	let dice = document.querySelector(".bt")
+	let score = document.querySelector(".score")
+	let boxs = document.querySelectorAll(".boxs")
+	let scoreStart = 150
+	let step = 0
+	dice.onclick = function(){
+		let random = Math.round(Math.random()*6)
+		boxs[step].style.backgroundImage = "none"
+		step = step + random
+		alert('У тебя выпало ' + random + ' иди на клетку ' + step)
+		boxs[step].style.backgroundImage = "url(duckl.png)"
+		count(10)
+		if(step == 3 || step == 6 || step == 9 || step == 19 || step == 22 || step == 25){
+			alert("-10 очков! Иди на 1 клетку назад!");
+			step = step - 1
+			scoreStart = scoreStart - 10
+			score.innerHTML = scoreStart
+			boxs[3].style.backgroundImage = "none"
+			boxs[6].style.backgroundImage = "none"
+			boxs[9].style.backgroundImage = "none"
+			boxs[19].style.backgroundImage = "none"
+			boxs[22].style.backgroundImage = "none"
+			boxs[25].style.backgroundImage = "none"
+			boxs[step].style.backgroundImage = "url(duckl.png)"
+		}
+		if(step == 12 || step == 16 || step == 28){
+			alert("-20 очков! Иди на 5 клеток назад!")
+			step = step - 5;
+			scoreStart = scoreStart - 20
+			score.innerHTML = scoreStart;
+			boxs[12].style.backgroundImage = "none"
+			boxs[16].style.backgroundImage = "none"
+			boxs[28].style.backgroundImage = "none"
+			boxs[step].style.backgroundImage = "url(duckl.png)"
+		}
+		if (step>31) {
+			alert("You win") 
+		} 
+	}
+	let count = function(arg){
+		scoreStart = scoreStart + arg
+		score.innerHTML = scoreStart
+	}
+	
+	
+	
+</script>
+</body>
+</html>
+
+
+
+
+
+
